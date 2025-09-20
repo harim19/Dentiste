@@ -1093,7 +1093,7 @@
                         <option value="new">Nouveau</option>
                         <option value="pending">En cours</option>
                         <option value="standby">Standby</option>
-                        <option value="postponed">Nouveau RDV</option>
+                        <option value="postponed">RDV Décaler</option>
                         <option value="closed">Clôturé</option>
                     </select>
                 </div>
@@ -1377,9 +1377,9 @@ deleteBtn.addEventListener('click', (e) => {
             
             let reminderText = '';
             if (diffDays > 0 && diffDays <= 7) {
-                reminderText = `Audience dans ${diffDays} jour(s)`;
+                reminderText = `RDV dans ${diffDays} jour(s)`;
             } else if (diffDays <= 0) {
-                reminderText = `Audience aujourd'hui ou passée`;
+                reminderText = `RDV aujourd'hui ou passée`;
             }
 
             dossierDetailsContent.innerHTML = `
@@ -1525,7 +1525,7 @@ deleteBtn.addEventListener('click', (e) => {
                 snapshot.forEach(childSnapshot => {
                     const dossier = childSnapshot.val();
                     if (isUpcomingAudience(dossier.audienceDate)) {
-                        showNotification(`Audience proche: ${dossier.name} (${formatDate(dossier.audienceDate)})`);
+                        showNotification(`Rendez-vous proche: ${dossier.name} (${formatDate(dossier.audienceDate)})`);
                     }
                 });
             });
@@ -1994,4 +1994,5 @@ function handleStandby(id) {
         });
     </script>
 </body>
+
 </html>
