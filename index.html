@@ -931,7 +931,7 @@
     <div id="app-container">
         <!-- Header -->
         <header class="app-header">
-            <div class="logo futuristic-font">Cabinet de Médical</div>
+            <div class="logo futuristic-font">Cabinet Médical</div>
             <div class="user-info">
                 <img src="images/logo.jpg" alt="User" class="user-avatar">
                 <span id="username-display">Utilisateur</span>
@@ -973,7 +973,7 @@
                         <tr>
                             <th>N° Dossier</th>
                             <th>Nom du Dossier</th>
-                            <th>Date de traitement</th>
+                            <th>Date du traitement</th>
                             <th>Statut</th>
                             <th>Actions</th>
                         </tr>
@@ -996,7 +996,7 @@
                 <!-- Tasks Section -->
                 <div class="tasks-section">
                     <div class="tasks-header">
-                        <h3 class="tasks-title"><i class="fas fa-tasks"></i>Tâches à accomplir</h3>
+                        <h3 class="tasks-title"><i class="fas fa-tasks"></i> Tâches à accomplir</h3>
                         <button id="add-task-btn" class="add-task-btn">
                             <i class="fas fa-plus"></i> Ajouter
                         </button>
@@ -1127,10 +1127,11 @@
                     <label for="task-deadline" class="form-label">Échéance</label>
                     <input type="date" id="task-deadline" class="form-input">
                 </div>
-                <div class="form-group">
-                    <label for="task-assignee" class="form-label">Assigné à</label>
-                    <input type="text"  id="task-assignee" class="form-input"required>
-                        <!-- Will be populated with team members -->
+				<div class="form-group">
+                    <<label for="task-assignee" class="form-label">Assigné à</label>
+                    <select id="task-assignee" class="form-input">
+                        Beby
+                    </select>
                     </div>
                 <div class="form-actions">
                     <button type="button" class="form-btn cancel">Annuler</button>
@@ -1995,4 +1996,5 @@ function handleStandby(id) {
 </body>
 
 </html>
+
 
