@@ -931,7 +931,7 @@
     <div id="app-container">
         <!-- Header -->
         <header class="app-header">
-            <div class="logo futuristic-font">Cabinet de Dentisterie</div>
+            <div class="logo futuristic-font">Cabinet de Médical</div>
             <div class="user-info">
                 <img src="images/logo.jpg" alt="User" class="user-avatar">
                 <span id="username-display">Utilisateur</span>
@@ -1072,7 +1072,7 @@
                     <input type="text" id="dossier-name" class="form-input" required>
                 </div>
                 <div class="form-group">
-                    <label for="client-name" class="form-label">Nom du Client</label>
+                    <label for="client-name" class="form-label">Nom du Patient</label>
                     <input type="text" id="client-name" class="form-input" required>
                 </div>
                 <div class="form-group">
@@ -1129,10 +1129,9 @@
                 </div>
                 <div class="form-group">
                     <label for="task-assignee" class="form-label">Assigné à</label>
-                    <select id="task-assignee" class="form-input">
+                    <input type="text"  id="task-assignee" class="form-input"required>
                         <!-- Will be populated with team members -->
-                    </select>
-                </div>
+                    </div>
                 <div class="form-actions">
                     <button type="button" class="form-btn cancel">Annuler</button>
                     <button type="submit" class="form-btn submit">Enregistrer</button>
@@ -1377,7 +1376,7 @@ deleteBtn.addEventListener('click', (e) => {
             
             let reminderText = '';
             if (diffDays > 0 && diffDays <= 7) {
-                reminderText = `RDV dans ${diffDays} jour(s)`;
+                reminderText = `Dans ${diffDays} jour(s)`;
             } else if (diffDays <= 0) {
                 reminderText = `RDV aujourd'hui ou passée`;
             }
@@ -1392,7 +1391,7 @@ deleteBtn.addEventListener('click', (e) => {
                     <div class="detail-value">${dossier.name}</div>
                 </div>
                 <div class="detail-item">
-                    <span class="detail-label">Client</span>
+                    <span class="detail-label">Patient</span>
                     <div class="detail-value">${dossier.clientName}</div>
                 </div>
                 <div class="detail-item">
@@ -1996,3 +1995,4 @@ function handleStandby(id) {
 </body>
 
 </html>
+
