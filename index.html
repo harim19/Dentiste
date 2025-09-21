@@ -920,7 +920,7 @@
             <form id="login-form">
                 <input type="email" id="login-email" class="login-input" placeholder="Email" required>
                 <input type="password" id="login-password" class="login-input" placeholder="Mot de passe" required>
-                <button type="submit">
+                <button type="submit" class="login-btn">
                     <i class="fas fa-sign-in-alt"></i> Connexion
                 </button>
             </form>
@@ -1277,78 +1277,32 @@
         }
 
         // Create a dossier row in the table
-        // Helper : "Urgent" si audience dans 3 jours ou moins (et future)
-function isUrgent(audienceDate) {
-    const now = new Date();
-    const dateAudience = new Date(audienceDate);
-    const diffTime = dateAudience - now;
-    const diffDays = diffTime / (1000 * 60 * 60 * 24);
-    return diffDays >= 0 && diffDays <= 3;
+        function createDossierRow(id, dossier) {
+            const row = document.createElement('tr');
+            row.className = 'dossier-row';
+            row.dataset.id = id;
+            
+            // Determine status badge
+            let statusBadge = '';
+if (dossier.status === 'new') {
+    statusBadge = '<span class="status-badge status-new">New</span>';
+} else if (dossier.status === 'postponed') {
+    statusBadge = '<span class="status-badge status-renvoi">Renvoi</span>';
+} else if (dossier.status === 'standby') {
+    statusBadge = '<span class="status-badge status-standby">Standby</span>';
+} else if (isUpcomingAudience(dossier.audienceDate)) {
+    statusBadge = '<span class="status-badge status-urgent">Urgent</span>';
+} else {
+    statusBadge = `<span class="status-badge">${getStatusText(dossier.status)}</span>`;
 }
 
-// Helper : "Nouveau" si créé il y a moins de 24h
-function isNew(createdAt) {
-    if (!createdAt) return false;
-    const now = new Date();
-    const created = new Date(createdAt);
-    const diffTime = now - created; // en ms
-    const diffHours = diffTime / (1000 * 60 * 60);
-    return diffHours <= 24;
-}
-
-// Helper (optionnel) : "En retard" si la date est passée
-function isPast(audienceDate) {
-    const now = new Date();
-    const dateAudience = new Date(audienceDate);
-    return dateAudience < now;
-}
-
-// Fonction principale : création de la ligne du dossier
-function createDossierRow(id, dossier) {
-    const row = document.createElement('tr');
-    row.className = 'dossier-row';
-    row.dataset.id = id;
-
-    let statusBadge = '';
-
-    // 1. Badge Urgent prioritaire
-    if (isUrgent(dossier.audienceDate)) {
-        statusBadge = '<span class="status-badge status-urgent">Urgent</span>';
-    }
-    // 2. Badge Nouveau si "new" ET moins de 24h depuis la création
-    else if (dossier.status === 'new' && isNew(dossier.createdAt)) {
-        statusBadge = '<span class="status-badge status-new">Nouveau</span>';
-    }
-    // 3. Si "new" ET plus de 24h => rien
-    else if (dossier.status === 'new' && !isNew(dossier.createdAt)) {
-        statusBadge = '';
-    }
-    // 4. Renvoi
-    else if (dossier.status === 'postponed') {
-        statusBadge = '<span class="status-badge status-renvoi">Renvoi</span>';
-    }
-    // 5. Standby
-    else if (dossier.status === 'standby') {
-        statusBadge = '<span class="status-badge status-standby">Standby</span>';
-    }
-    // 6. (optionnel) En retard si tu veux
-    // else if (isPast(dossier.audienceDate)) {
-    //     statusBadge = '<span class="status-badge status-renvoi">En retard</span>';
-    // }
-    // 7. Autres statuts
-    else {
-        statusBadge = `<span class="status-badge">${getStatusText(dossier.status)}</span>`;
-    }
-
-	    // Génération HTML de la ligne (adapte les champs selon tes colonnes)
-    row.innerHTML = `
-        <td>${dossier.numero || ''}</td>
-        <td>${dossier.nom || ''}</td>
-        <td>${dossier.audienceDate ? new Date(dossier.audienceDate).toLocaleDateString() : ''}</td>
-        <td>${statusBadge}</td>
-        <td>
-
-  <div class="action-buttons">
+            row.innerHTML = `
+                <td>${dossier.number}</td>
+                <td>${dossier.name}</td>
+                <td>${formatDate(dossier.audienceDate)}</td>
+                <td>${statusBadge}</td>
+                <td>
+<div class="action-buttons">
     <button class="edit-btn" data-id="${id}">
         <i class="fas fa-edit"></i> Modifier
     </button>
@@ -2042,11 +1996,3 @@ function handleStandby(id) {
 </body>
 
 </html>
-
-
-
-
-
-
-
-
