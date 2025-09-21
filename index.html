@@ -1348,12 +1348,7 @@ function createDossierRow(id, dossier) {
         <td>${statusBadge}</td>
         <td>
 
-  dossiers.forEach((dossier, id) => {
-    const row = createDossierRow(id, dossier);
-    dossiersList.appendChild(row);
-});
-
-<div class="action-buttons">
+  <div class="action-buttons">
     <button class="edit-btn" data-id="${id}">
         <i class="fas fa-edit"></i> Modifier
     </button>
@@ -2047,6 +2042,7 @@ function handleStandby(id) {
 </body>
 
 </html>
+
 
 
 
