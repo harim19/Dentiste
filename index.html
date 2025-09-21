@@ -1616,7 +1616,7 @@ deleteBtn.addEventListener('click', (e) => {
         }
 
 	    function handleRenvoi(id) {
-    const newDate = prompt("Entrez la nouvelle date d'audience (format: YYYY-MM-DDTHH:MM):", "");
+    const newDate = prompt("Entrez la nouvelle date (format: YYYY-MM-DDT HH:MM):", "");
     if (newDate) {
         database.ref('dossiers/' + id).update({
             audienceDate: new Date(newDate).toISOString(),
@@ -1996,3 +1996,4 @@ function handleStandby(id) {
 </body>
 
 </html>
+
