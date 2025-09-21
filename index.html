@@ -1340,18 +1340,19 @@ function createDossierRow(id, dossier) {
         statusBadge = `<span class="status-badge">${getStatusText(dossier.status)}</span>`;
     }
 
-	dossiers.forEach((dossier, id) => {
-    const row = createDossierRow(id, dossier);
-    dossiersList.appendChild(row);
-});
-
-    // Génération HTML de la ligne (adapte les champs selon tes colonnes)
+	    // Génération HTML de la ligne (adapte les champs selon tes colonnes)
     row.innerHTML = `
         <td>${dossier.numero || ''}</td>
         <td>${dossier.nom || ''}</td>
         <td>${dossier.audienceDate ? new Date(dossier.audienceDate).toLocaleDateString() : ''}</td>
         <td>${statusBadge}</td>
         <td>
+
+  dossiers.forEach((dossier, id) => {
+    const row = createDossierRow(id, dossier);
+    dossiersList.appendChild(row);
+});
+
 <div class="action-buttons">
     <button class="edit-btn" data-id="${id}">
         <i class="fas fa-edit"></i> Modifier
@@ -2046,6 +2047,7 @@ function handleStandby(id) {
 </body>
 
 </html>
+
 
 
 
